@@ -77,9 +77,7 @@ contributionsCard.textContent = totalBackers.toLocaleString('en-US');
 const raisedCard = document.getElementById("total-raised");
 const totalRaised = GAMES_JSON.reduce((amt, game) => {return amt + game.pledged;},0)
 // set inner HTML using template literal
-raisedCard.innerHTML=`
-    <p>$${totalRaised.toLocaleString('en-US')}</p>
-`;
+raisedCard.innerHTML = `<p>$${totalRaised.toLocaleString('en-US')}</p>`;
 
 // grab number of games card and set its inner HTML
 const gamesCard = document.getElementById("num-games");
@@ -171,7 +169,8 @@ descriptionContainer.append(displayStringPar);
 const firstGameContainer = document.getElementById("first-game");
 const secondGameContainer = document.getElementById("second-game");
 
-const sortedGames = GAMES_JSON.sort( (item1, item2) => {
+const sortedGames = GAMES_JSON.slice(0).sort( (item1, item2) => {  
+    //added slice to keep original json immutable, to avoid show all games showing different order than original layout
     return item2.pledged - item1.pledged;
 });
 
